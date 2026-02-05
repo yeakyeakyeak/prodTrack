@@ -1,16 +1,17 @@
 /* =========================================== */
-/* PRODTRACK CSS - ОПТИМИЗИРОВАНО ДЛЯ 1920x1080 */
+/* PRODTRACK - ПОЛНЫЙ CSS ФАЙЛ */
 /* =========================================== */
 
-/* ===== БАЗОВЫЕ СТИЛИ ===== */
+/* ===== БАЗОВЫЕ СТИЛИ И СБРОС ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 :root {
-    /* Цветовая палитра */
+    /* Основные цвета */
     --primary: #4f46e5;
     --primary-light: #818cf8;
     --primary-dark: #3730a3;
@@ -23,9 +24,6 @@
     --danger: #ef4444;
     --danger-light: #f87171;
     --danger-dark: #dc2626;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --info: #3b82f6;
     
     /* Оттенки серого */
     --white: #ffffff;
@@ -70,10 +68,8 @@
     --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== ОСНОВНЫЕ СТИЛИ (1920x1080) ===== */
+/* ===== ОСНОВНЫЕ СТИЛИ ===== */
 body {
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
     background-color: var(--light-bg);
     color: var(--dark);
     line-height: 1.6;
@@ -82,7 +78,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Контейнер для 1920x1080 */
 .container {
     max-width: 1600px;
     margin: 0 auto;
@@ -321,7 +316,115 @@ nav {
     padding: 0;
 }
 
-/* ===== ФОРМЫ ===== */
+/* ===== УЛУЧШЕННЫЕ ПОЛЯ ВВОДА ===== */
+
+/* Общие стили для всех полей */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    background-color: var(--white);
+    color: var(--dark);
+    transition: all 0.3s ease;
+    outline: none;
+    line-height: 1.5;
+    box-shadow: var(--shadow-sm);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Hover состояние */
+input:not([type="checkbox"]):not([type="radio"]):hover,
+select:hover,
+textarea:hover {
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+}
+
+/* Фокус состояние */
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Placeholder */
+::placeholder {
+    color: var(--gray);
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* Специальные стили для select */
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 48px;
+    cursor: pointer;
+}
+
+select:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* Специальные стили для input[type="date"] */
+input[type="date"] {
+    position: relative;
+    min-height: 52px;
+    padding-right: 48px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+input[type="date"]:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+}
+
+/* Специальные стили для input[type="number"] */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Стили для textarea */
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+    padding: 16px 20px;
+    font-family: inherit;
+}
+
+/* ===== ФОРМЫ И ГРУППЫ ===== */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -332,43 +435,6 @@ nav {
     font-size: 1.125rem;
     font-weight: 600;
     color: var(--dark);
-}
-
-.form-control {
-    width: 100%;
-    padding: 16px 20px;
-    font-size: 1.125rem;
-    border: 2px solid var(--light-gray);
-    border-radius: var(--radius-lg);
-    background-color: var(--white);
-    color: var(--dark);
-    transition: all var(--transition);
-    outline: none;
-    height: 56px;
-}
-
-.form-control:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-    transform: translateY(-1px);
-}
-
-.form-control::placeholder {
-    color: var(--gray);
-}
-
-textarea.form-control {
-    min-height: 120px;
-    resize: vertical;
-}
-
-select.form-control {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 20px center;
-    background-size: 20px;
-    padding-right: 56px;
 }
 
 /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
@@ -384,14 +450,14 @@ main .container {
     align-items: start;
 }
 
-/* Боковая панель */
+/* ===== БОКОВАЯ ПАНЕЛЬ ===== */
 .sidebar {
     position: sticky;
     top: 110px;
     height: fit-content;
 }
 
-/* Карточки */
+/* ===== КАРТОЧКИ ===== */
 .card {
     background-color: var(--white);
     border-radius: var(--radius-xl);
@@ -437,7 +503,6 @@ main .container {
 
 /* ===== ТАБЫ ===== */
 .tabs {
-    max-width: 600px;
     display: flex;
     gap: 8px;
     background-color: var(--white);
@@ -626,11 +691,11 @@ main .container {
 }
 
 .task-item.priority-medium {
-    border-left-color: var(--warning);
+    border-left-color: var(--accent);
 }
 
 .task-item.priority-low {
-    border-left-color: var(--success);
+    border-left-color: var(--secondary);
 }
 
 .task-item.completed {
@@ -664,8 +729,8 @@ main .container {
 }
 
 .task-checkbox input:checked ~ .checkmark {
-    background-color: var(--success);
-    border-color: var(--success);
+    background-color: var(--secondary);
+    border-color: var(--secondary);
 }
 
 .checkmark::after {
@@ -820,7 +885,7 @@ main .container {
 }
 
 .day-cell.completed {
-    background: linear-gradient(135deg, var(--success), var(--secondary-dark));
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
     color: white;
     transform: translateY(-2px);
 }
@@ -1003,7 +1068,7 @@ main .container {
 }
 
 .balance-card.savings .balance-amount {
-    color: var(--success);
+    color: var(--secondary);
 }
 
 .budget-grid {
@@ -1463,7 +1528,7 @@ input:checked + .slider:before {
 }
 
 .notification.success {
-    border-left-color: var(--success);
+    border-left-color: var(--secondary);
 }
 
 .notification.error {
@@ -1471,7 +1536,7 @@ input:checked + .slider:before {
 }
 
 .notification.warning {
-    border-left-color: var(--warning);
+    border-left-color: var(--accent);
 }
 
 .notification-icon {
@@ -1480,7 +1545,7 @@ input:checked + .slider:before {
 }
 
 .notification.success .notification-icon {
-    color: var(--success);
+    color: var(--secondary);
 }
 
 .notification.error .notification-icon {
@@ -1488,7 +1553,7 @@ input:checked + .slider:before {
 }
 
 .notification.warning .notification-icon {
-    color: var(--warning);
+    color: var(--accent);
 }
 
 .notification-content {
@@ -1508,7 +1573,7 @@ input:checked + .slider:before {
 }
 
 /* =========================================== */
-/* МЕДИА-ЗАПРОСЫ ДЛЯ АДАПТАЦИИ К ТЕЛЕФОНАМ */
+/* МЕДИА-ЗАПРОСЫ ДЛЯ АДАПТАЦИИ */
 /* =========================================== */
 
 /* Планшеты (768px - 1023px) */
@@ -1602,6 +1667,25 @@ input:checked + .slider:before {
         padding: 24px 0;
     }
     
+    /* Улучшенные поля ввода для мобильных */
+    input:not([type="checkbox"]):not([type="radio"]),
+    select,
+    textarea {
+        padding: 14px 16px;
+        font-size: 16px;
+        border-radius: var(--radius);
+    }
+    
+    select {
+        padding-right: 44px;
+        background-position: right 12px center;
+    }
+    
+    input[type="date"] {
+        padding-right: 44px;
+        background-position: right 12px center;
+    }
+    
     .card,
     .modal-content,
     .expense-form,
@@ -1616,12 +1700,6 @@ input:checked + .slider:before {
         font-size: 1rem;
         height: 48px;
         min-width: 120px;
-    }
-    
-    .form-control {
-        padding: 14px 16px;
-        font-size: 1rem;
-        height: 48px;
     }
     
     .task-item {
@@ -1832,10 +1910,22 @@ input:checked + .slider:before {
         font-size: 0.875rem;
     }
     
-    .form-control {
+    /* Уменьшенные поля ввода для очень маленьких экранов */
+    input:not([type="checkbox"]):not([type="radio"]),
+    select,
+    textarea {
         padding: 12px 14px;
-        font-size: 0.875rem;
-        height: 44px;
+        font-size: 14px;
+    }
+    
+    select {
+        padding-right: 40px;
+        background-position: right 10px center;
+    }
+    
+    input[type="date"] {
+        padding-right: 40px;
+        background-position: right 10px center;
     }
     
     .stat-card {
@@ -1862,4 +1952,3 @@ input:checked + .slider:before {
         font-size: 1.25rem;
     }
 }
-
