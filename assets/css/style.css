@@ -10,6 +10,96 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+/* ===== КРАСИВАЯ КНОПКА ДОБАВЛЕНИЯ ЦЕЛИ ===== */
+#add-goal-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 32px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition);
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: white;
+    box-shadow: var(--shadow);
+    min-width: 180px;
+    height: 64px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+/* Hover эффект */
+#add-goal-btn:hover {
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    color: white;
+}
+
+/* Активное состояние (клик) */
+#add-goal-btn:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Фокус состояние */
+#add-goal-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+}
+
+/* Эффект блеска при наведении */
+#add-goal-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.7s ease;
+}
+
+#add-goal-btn:hover::after {
+    left: 100%;
+}
+
+/* Иконка в кнопке */
+#add-goal-btn i {
+    font-size: 1.25rem;
+    transition: transform var(--transition);
+}
+
+#add-goal-btn:hover i {
+    transform: scale(1.1) rotate(90deg);
+}
+
+/* Анимация при клике */
+#add-goal-btn:active {
+    animation: buttonClick 0.2s ease;
+}
+
+/* Отключенное состояние */
+#add-goal-btn:disabled {
+    background: var(--light-gray);
+    color: var(--gray);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
 :root {
     /* Основные цвета */
     --primary: #4f46e5;
@@ -2174,5 +2264,6 @@ input:checked + .slider:before {
         font-size: 1.25rem;
     }
 }
+
 
 
