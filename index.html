@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do & Habits Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-check-double"></i>
+                <span>ProdTrack</span>
+            </div>
+            <nav>
+                <a href="index.html" class="active"><i class="fas fa-tasks"></i> Задачи & Привычки</a>
+                <a href="budget.html"><i class="fas fa-wallet"></i> Бюджет</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Переключение между задачами и привычками -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="todo">
+                <i class="fas fa-tasks"></i> Мои задачи
+            </button>
+            <button class="tab-btn" data-tab="habits">
+                <i class="fas fa-sync-alt"></i> Привычки
+            </button>
+            <button class="tab-btn" data-tab="calendar">
+                <i class="fas fa-calendar-alt"></i> Календарь
+            </button>
+        </div>
+
+        <!-- Вкладка задач -->
+        <div id="todo-tab" class="tab-content active">
+            <div class="todo-header">
+                <h2><i class="fas fa-list-check"></i> Список задач</h2>
+                <div class="stats">
+                    <span class="stat">Всего: <span id="total-tasks">0</span></span>
+                    <span class="stat">Выполнено: <span id="completed-tasks">0</span></span>
+                    <span class="stat">В процессе: <span id="active-tasks">0</span></span>
+                </div>
+            </div>
+
+            <div class="add-task">
+                <input type="text" id="task-input" placeholder="Добавить новую задачу..." maxlength="100">
+                <select id="task-category">
+                    <option value="work">🖥️ Работа</option>
+                    <option value="home">🏠 Дом</option>
+                    <option value="health">💪 Здоровье</option>
+                    <option value="learning">📚 Обучение</option>
+                    <option value="other">🔶 Другое</option>
+                </select>
+                <select id="task-priority">
+                    <option value="low">🔵 Низкий</option>
+                    <option value="medium">🟡 Средний</option>
+                    <option value="high">🔴 Высокий</option>
+                </select>
+                <input type="date" id="task-date">
+                <button id="add-task-btn"><i class="fas fa-plus"></i> Добавить</button>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="active">Активные</button>
+                <button class="filter-btn" data-filter="completed">Выполненные</button>
+                <button class="filter-btn" data-filter="today">На сегодня</button>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="task-search" placeholder="Поиск задач...">
+                </div>
+            </div>
+
+            <div class="tasks-container">
+                <div id="tasks-list">
+                    <!-- Задачи будут добавляться здесь -->
+                </div>
+                <div class="empty-state" id="empty-tasks">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Нет задач</h3>
+                    <p>Добавьте свою первую задачу выше</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладка привычек -->
+        <div id="habits-tab" class="tab-content">
+            <div class="habits-header">
+                <h2><i class="fas fa-sync-alt"></i> Трекер привычек</h2>
+                <div class="habits-stats">
+                    <span class="stat">Активных привычек: <span id="active-habits">0</span></span>
+                    <span class="stat">Успешность: <span id="success-rate">0%</span></span>
+                </div>
+            </div>
+
+            <div class="add-habit">
+                <input type="text" id="habit-input" placeholder="Новая привычка (например: Пить воду, Читать 20 мин)"
+                    maxlength="80">
+                <select id="habit-frequency">
+                    <option value="daily">Ежедневно</option>
+                    <option value="weekly">3 раза в неделю</option>
+                    <option value="weekdays">По будням</option>
+                </select>
+                <button id="add-habit-btn"><i class="fas fa-plus"></i> Создать привычку</button>
+            </div>
+
+            <div class="habits-container">
+                <div id="habits-list">
+                    <!-- Привычки будут добавляться здесь -->
+                </div>
+                <div class="empty-state" id="empty-habits">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Нет привычек</h3>
+                    <p>Начните отслеживать свою первую привычку</p>
+                </div>
+            </div>
+
+            <div class="habits-calendar">
+                <h3><i class="fas fa-calendar-week"></i> Прогресс за неделю</h3>
+                <div id="week-calendar">
+                    <!-- Календарь недели с отметками привычек -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладка календаря -->
+        <div id="calendar-tab" class="tab-content">
+            <div class="calendar-header">
+                <h2><i class="fas fa-calendar-alt"></i> Планировщик</h2>
+                <div class="month-nav">
+                    <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                    <h3 id="current-month">Февраль 2024</h3>
+                    <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="calendar-container">
+                <div id="calendar">
+                    <!-- Календарь будет генерироваться здесь -->
+                </div>
+                <div class="calendar-events">
+                    <h3>События на <span id="selected-date">сегодня</span></h3>
+                    <div id="day-events">
+                        <!-- События на выбранный день -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Боковая панель с общей статистикой -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3><i class="fas fa-chart-line"></i> Сегодняшняя статистика</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="today-tasks">0</div>
+                        <div class="stat-label">Задач на сегодня</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="today-habits">0</div>
+                        <div class="stat-label">Привычек выполнено</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="productivity">0%</div>
+                        <div class="stat-label">Продуктивность</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3><i class="fas fa-bullseye"></i> Быстрые цели</h3>
+                <div class="quick-goals">
+                    <div class="goal-item">
+                        <span class="goal-text">Закончить 5 задач</span>
+                        <div class="goal-progress">
+                            <div class="progress-bar" style="width: 60%"></div>
+                        </div>
+                        <span class="goal-percent">60%</span>
+                    </div>
+                    <div class="goal-item">
+                        <span class="goal-text">30 дней привычки</span>
+                        <div class="goal-progress">
+                            <div class="progress-bar" style="width: 30%"></div>
+                        </div>
+                        <span class="goal-percent">30%</span>
+                    </div>
+                </div>
+                <button class="btn-secondary" id="add-goal-btn">
+                    <i class="fas fa-plus-circle"></i> Новая цель
+                </button>
+            </div>
+
+            <div class="sidebar-card">
+                <h3><i class="fas fa-fire"></i> Активность</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Выполнена задача "Подготовить отчет"</span>
+                        <span class="activity-time">10:30</span>
+                    </div>
+                    <div class="activity-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Отмечена привычка "Утренняя зарядка"</span>
+                        <span class="activity-time">08:15</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 ProdTrack | Ваш личный помощник в продуктивности</p>
+            <div class="theme-switcher">
+                <i class="fas fa-moon"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+                <i class="fas fa-sun"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для целей -->
+    <div class="modal" id="goal-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3><i class="fas fa-bullseye"></i> Новая цель</h3>
+            <input type="text" id="goal-title" placeholder="Название цели">
+            <select id="goal-type">
+                <option value="tasks">Задачи</option>
+                <option value="habits">Привычки</option>
+                <option value="streak">Серия дней</option>
+            </select>
+            <input type="number" id="goal-target" placeholder="Целевое значение" min="1">
+            <button id="save-goal-btn" class="btn-primary">Сохранить цель</button>
+        </div>
+    </div>
+
+    <script src="./assets/js/todo-habits.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

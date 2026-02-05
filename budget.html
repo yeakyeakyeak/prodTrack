@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бюджет и накопления</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-wallet"></i>
+                <span>Бюджет</span>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-tasks"></i> Задачи & Привычки</a>
+                <a href="budget.html" class="active"><i class="fas fa-wallet"></i> Бюджет</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="budget-header">
+            <h1><i class="fas fa-chart-pie"></i> Учет расходов и накоплений</h1>
+            <div class="total-balance">
+                <div class="balance-card">
+                    <h3>Общий баланс</h3>
+                    <div class="balance-amount" id="total-balance">25 430 ₽</div>
+                </div>
+                <div class="balance-card">
+                    <h3>Расходы в этом месяце</h3>
+                    <div class="balance-amount expense" id="month-expenses">18 750 ₽</div>
+                </div>
+                <div class="balance-card">
+                    <h3>Цели накопления</h3>
+                    <div class="balance-amount savings" id="savings-goals">12 500 ₽</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="budget-grid">
+            <!-- Левая колонка: Добавление расходов -->
+            <div class="budget-section">
+                <h2><i class="fas fa-plus-circle"></i> Добавить расход</h2>
+                <div class="expense-form">
+                    <div class="form-group">
+                        <label for="expense-amount"><i class="fas fa-ruble-sign"></i> Сумма</label>
+                        <input type="number" id="expense-amount" placeholder="0" min="0" step="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-category"><i class="fas fa-tags"></i> Категория</label>
+                        <select id="expense-category">
+                            <option value="food">🍔 Еда</option>
+                            <option value="transport">🚗 Транспорт</option>
+                            <option value="utilities">🏠 Коммуналка</option>
+                            <option value="entertainment">🎬 Развлечения</option>
+                            <option value="shopping">🛍️ Покупки</option>
+                            <option value="health">💊 Здоровье</option>
+                            <option value="education">📚 Образование</option>
+                            <option value="other">🔶 Другое</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-date"><i class="fas fa-calendar"></i> Дата</label>
+                        <input type="date" id="expense-date" value="2024-02-06">
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-description"><i class="fas fa-comment"></i> Описание</label>
+                        <input type="text" id="expense-description" placeholder="На что потратили?" maxlength="60">
+                    </div>
+                    <button id="add-expense-btn" class="btn-primary">
+                        <i class="fas fa-save"></i> Добавить расход
+                    </button>
+                </div>
+
+                <div class="savings-form">
+                    <h3><i class="fas fa-piggy-bank"></i> Отложить на цель</h3>
+                    <div class="form-group">
+                        <label for="savings-amount">Сумма</label>
+                        <input type="number" id="savings-amount" placeholder="Сколько отложить?" min="0" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="savings-goal-select">На какую цель</label>
+                        <select id="savings-goal-select">
+                            <!-- Цели будут добавляться динамически -->
+                            <option value="new-goal">+ Создать новую цель</option>
+                        </select>
+                    </div>
+                    <button id="add-savings-btn" class="btn-secondary">
+                        <i class="fas fa-coins"></i> Отложить
+                    </button>
+                </div>
+            </div>
+
+            <!-- Центральная колонка: Последние расходы и статистика -->
+            <div class="budget-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> Последние расходы</h2>
+                    <div class="period-selector">
+                        <select id="period-select">
+                            <option value="today">Сегодня</option>
+                            <option value="week" selected>Эта неделя</option>
+                            <option value="month">Этот месяц</option>
+                            <option value="year">Этот год</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="expenses-list">
+                    <div id="expenses-container">
+                        <!-- Расходы будут добавляться динамически -->
+                    </div>
+                    <div class="empty-state" id="empty-expenses">
+                        <i class="fas fa-receipt"></i>
+                        <h3>Нет расходов</h3>
+                        <p>Добавьте свой первый расход</p>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <h3><i class="fas fa-chart-bar"></i> Статистика по категориям</h3>
+                    <div id="categories-chart">
+                        <!-- График будет генерироваться -->
+                        <div class="chart-placeholder">
+                            <div class="chart-bar" style="height: 80%; background-color: #4CAF50;" data-category="Еда">
+                                <span class="chart-label">Еда</span>
+                                <span class="chart-value">35%</span>
+                            </div>
+                            <div class="chart-bar" style="height: 60%; background-color: #2196F3;"
+                                data-category="Транспорт">
+                                <span class="chart-label">Транспорт</span>
+                                <span class="chart-value">25%</span>
+                            </div>
+                            <div class="chart-bar" style="height: 40%; background-color: #FF9800;"
+                                data-category="Развлечения">
+                                <span class="chart-label">Развлечения</span>
+                                <span class="chart-value">15%</span>
+                            </div>
+                            <div class="chart-bar" style="height: 30%; background-color: #9C27B0;"
+                                data-category="Покупки">
+                                <span class="chart-label">Покупки</span>
+                                <span class="chart-value">10%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Правая колонка: Цели накопления -->
+            <div class="budget-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bullseye"></i> Цели накопления</h2>
+                    <button id="new-goal-btn" class="btn-small">
+                        <i class="fas fa-plus"></i> Новая цель
+                    </button>
+                </div>
+
+                <div class="goals-list">
+                    <div id="goals-container">
+                        <!-- Цели будут добавляться динамически -->
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <span class="goal-icon">🏠</span>
+                                <h4>На отпуск</h4>
+                                <span class="goal-amount">15 000 / 50 000 ₽</span>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="progress-bar" style="width: 30%"></div>
+                            </div>
+                            <div class="goal-details">
+                                <span class="goal-percent">30%</span>
+                                <span class="goal-date">До 01.06.2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insights-card">
+                    <h3><i class="fas fa-lightbulb"></i> Инсайты</h3>
+                    <div class="insight-item">
+                        <i class="fas fa-utensils"></i>
+                        <div>
+                            <p>Вы тратите на еду больше среднего</p>
+                            <small>Сократите на 20% для достижения цели</small>
+                        </div>
+                    </div>
+                    <div class="insight-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <div>
+                            <p>Отличная неделя для накоплений!</p>
+                            <small>Вы сэкономили 1500 ₽ по сравнению с прошлой неделей</small>
+                        </div>
+                    </div>
+                    <div class="insight-item">
+                        <i class="fas fa-bolt"></i>
+                        <div>
+                            <p>Пик трат: среда, 18:00-21:00</p>
+                            <small>Планируйте бюджет на эти часы</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="budget-tips">
+                    <h3><i class="fas fa-graduation-cap"></i> Советы по бюджету</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Откладывайте 10% от дохода сразу</li>
+                        <li><i class="fas fa-check"></i> Ведите учет каждый день</li>
+                        <li><i class="fas fa-check"></i> Планируйте крупные покупки заранее</li>
+                        <li><i class="fas fa-check"></i> Раз в месяц анализируйте траты</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Бюджет | Умный учет финансов</p>
+            <div class="export-actions">
+                <button class="btn-small" id="export-data">
+                    <i class="fas fa-download"></i> Экспорт данных
+                </button>
+                <button class="btn-small" id="clear-data">
+                    <i class="fas fa-trash-alt"></i> Очистить данные
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для новых целей -->
+    <div class="modal" id="new-goal-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3><i class="fas fa-bullseye"></i> Новая цель накопления</h3>
+            <div class="form-group">
+                <label for="goal-name">Название цели</label>
+                <input type="text" id="goal-name" placeholder="Например: Отпуск, Ноутбук...">
+            </div>
+            <div class="form-group">
+                <label for="goal-target-amount">Целевая сумма</label>
+                <input type="number" id="goal-target-amount" placeholder="Сколько нужно накопить?" min="100" step="100">
+            </div>
+            <div class="form-group">
+                <label for="goal-deadline">Срок выполнения</label>
+                <input type="date" id="goal-deadline">
+            </div>
+            <div class="form-group">
+                <label for="goal-icon">Иконка цели</label>
+                <select id="goal-icon">
+                    <option value="🏠">🏠 Дом</option>
+                    <option value="🚗">🚗 Автомобиль</option>
+                    <option value="✈️">✈️ Отпуск</option>
+                    <option value="💍">💍 Свадьба</option>
+                    <option value="📱">📱 Гаджет</option>
+                    <option value="🎓">🎓 Образование</option>
+                    <option value="🐶">🐶 Питомец</option>
+                    <option value="🎁">🎁 Подарок</option>
+                </select>
+            </div>
+            <button id="save-goal-btn" class="btn-primary">
+                <i class="fas fa-save"></i> Сохранить цель
+            </button>
+        </div>
+    </div>
+
+    <script src="./assets/js/budget.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

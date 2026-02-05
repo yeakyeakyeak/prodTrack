@@ -1,0 +1,1276 @@
+/* ===== ОБЩИЕ СТИЛИ ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    /* Цветовая палитра светлой темы */
+    --primary: #4f46e5;
+    --primary-light: #818cf8;
+    --primary-dark: #3730a3;
+    --secondary: #10b981;
+    --secondary-light: #34d399;
+    --secondary-dark: #059669;
+    --accent: #f59e0b;
+    --accent-light: #fbbf24;
+    --accent-dark: #d97706;
+    --danger: #ef4444;
+    --danger-light: #f87171;
+    --danger-dark: #dc2626;
+    --light: #f8fafc;
+    --light-gray: #e2e8f0;
+    --gray: #94a3b8;
+    --dark: #1e293b;
+    --dark-gray: #475569;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --transition: all 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --light: #1e293b;
+    --light-gray: #334155;
+    --gray: #64748b;
+    --dark: #f1f5f9;
+    --dark-gray: #cbd5e1;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== ТИПОГРАФИЯ ===== */
+h1,
+h2,
+h3,
+h4 {
+    color: var(--dark);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+}
+
+h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--dark-gray);
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* ===== КНОПКИ ===== */
+.btn-primary,
+.btn-secondary,
+.btn-small,
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+    background-color: var(--light-gray);
+    color: var(--dark);
+    border: 1px solid var(--gray);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray);
+    color: white;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ===== ФОРМЫ ===== */
+input,
+select,
+textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius-sm);
+    background-color: white;
+    color: var(--dark);
+    font-size: 1rem;
+    transition: var(--transition);
+    width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* ===== КАРТОЧКИ ===== */
+.card,
+.sidebar-card,
+.goal-card,
+.balance-card {
+    background-color: white;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .sidebar-card,
+[data-theme="dark"] .goal-card,
+[data-theme="dark"] .balance-card {
+    background-color: var(--light-gray);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===== ХЕДЕР ===== */
+header {
+    background-color: white;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1rem 0;
+}
+
+[data-theme="dark"] header {
+    background-color: var(--light-gray);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.logo i {
+    font-size: 2.2rem;
+}
+
+nav {
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}
+
+nav a.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+nav a:hover:not(.active) {
+    background-color: var(--light-gray);
+}
+
+/* ===== ФУТЕР ===== */
+footer {
+    background-color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid var(--light-gray);
+}
+
+[data-theme="dark"] footer {
+    background-color: var(--light-gray);
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== ТЕМА ПЕРЕКЛЮЧАТЕЛЬ ===== */
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--gray);
+    transition: var(--transition);
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: var(--transition);
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--primary);
+}
+
+input:checked+.slider:before {
+    transform: translateX(30px);
+}
+
+/* ===== ТАБЫ ===== */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+    background-color: white;
+    padding: 10px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .tabs {
+    background-color: var(--light-gray);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.tab-btn.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.tab-btn:hover:not(.active) {
+    background-color: var(--light-gray);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ===== СТАТИСТИКА ===== */
+.stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    min-width: 120px;
+}
+
+[data-theme="dark"] .stat {
+    background-color: var(--light-gray);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-label {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+}
+
+/* ===== СПИСКИ ===== */
+.tasks-container,
+.habits-container,
+.expenses-list {
+    background-color: white;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    min-height: 400px;
+}
+
+[data-theme="dark"] .tasks-container,
+[data-theme="dark"] .habits-container,
+[data-theme="dark"] .expenses-list {
+    background-color: var(--light-gray);
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--gray);
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* ===== ПРОГРЕСС БАР ===== */
+.progress-bar {
+    height: 10px;
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-bar div {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+/* ===== МОДАЛЬНЫЕ ОКНА ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+[data-theme="dark"] .modal-content {
+    background-color: var(--light-gray);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--gray);
+}
+
+.close-modal:hover {
+    color: var(--danger);
+}
+
+/* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+main {
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+}
+
+/* ===== САЙДБАР ===== */
+.sidebar {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+/* ===== КАЛЕНДАРЬ ===== */
+.calendar-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .calendar {
+    background-color: var(--light-gray);
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    padding: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.calendar-day:hover {
+    background-color: var(--light-gray);
+}
+
+.calendar-day.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.calendar-day.has-events {
+    border: 2px solid var(--primary);
+}
+
+/* ===== БЮДЖЕТ ГРИД ===== */
+.budget-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.budget-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ===== ГРАФИК ===== */
+.chart-placeholder {
+    display: flex;
+    height: 200px;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 1rem;
+    background-color: white;
+    border-radius: var(--radius);
+}
+
+.chart-bar {
+    width: 40px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 5px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+/* ===== УВЕДОМЛЕНИЯ ===== */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    transform: translateX(150%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    background-color: var(--secondary);
+}
+
+.notification.error {
+    background-color: var(--danger);
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 1200px) {
+    .budget-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        gap: 0.5rem;
+    }
+
+    nav a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .budget-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-container {
+        grid-template-columns: 1fr;
+    }
+
+    footer .container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .add-task,
+    .add-habit,
+    .expense-form {
+        flex-direction: column;
+    }
+
+    .add-task input,
+    .add-task select,
+    .add-habit input,
+    .add-habit select {
+        width: 100%;
+    }
+}
+/* ===== СТИЛИ ДЛЯ ЗАДАЧ ===== */
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.75rem;
+    transition: var(--transition);
+    border-left: 4px solid var(--light-gray);
+}
+
+[data-theme="dark"] .task-item {
+    background-color: var(--light-gray);
+}
+
+.task-item.completed {
+    opacity: 0.7;
+    border-left-color: var(--secondary);
+}
+
+.task-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow);
+}
+
+.task-checkbox {
+    position: relative;
+    margin-right: 1rem;
+}
+
+.task-checkbox input {
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.checkmark {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--gray);
+    border-radius: 50%;
+    position: relative;
+    transition: var(--transition);
+}
+
+.task-checkbox input:checked~.checkmark {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.task-checkbox input:checked~.checkmark:after {
+    display: block;
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-text {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.task-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.task-actions button {
+    background: none;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+.task-actions button:hover {
+    background-color: var(--danger-light);
+    color: white;
+}
+
+.add-task,
+.add-habit {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .add-task,
+[data-theme="dark"] .add-habit {
+    background-color: var(--light-gray);
+}
+
+.add-habit {
+    grid-template-columns: 2fr 1fr auto;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: none;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius-sm);
+    color: var(--dark);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 300px;
+    margin-left: auto;
+}
+
+.search-box i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+}
+
+.search-box input {
+    padding-left: 40px;
+}
+
+/* ===== СТИЛИ ДЛЯ ПРИВЫЧЕК ===== */
+.habit-item {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .habit-item {
+    background-color: var(--light-gray);
+}
+
+.habit-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.habit-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.habit-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.habit-info {
+    flex: 1;
+}
+
+.habit-name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.habit-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.habit-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.week-progress {
+    display: flex;
+    justify-content: space-between;
+}
+
+.day-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    border-radius: var(--radius-sm);
+    min-width: 40px;
+    transition: var(--transition);
+}
+
+.day-cell.completed {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.day-name {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.habit-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.habit-toggle {
+    flex: 1;
+    padding: 10px;
+    background-color: var(--light-gray);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--dark);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.habit-toggle.completed {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.habit-toggle:hover:not(.completed) {
+    background-color: var(--primary);
+    color: white;
+}
+
+.habit-delete {
+    background: none;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+}
+
+.habit-delete:hover {
+    background-color: var(--danger-light);
+    color: white;
+}
+
+/* ===== СТИЛИ ДЛЯ БЮДЖЕТА ===== */
+.budget-header {
+    margin-bottom: 2rem;
+}
+
+.total-balance {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.balance-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+[data-theme="dark"] .balance-card {
+    background-color: var(--light-gray);
+}
+
+.balance-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    color: var(--primary);
+}
+
+.balance-amount.expense {
+    color: var(--danger);
+}
+
+.balance-amount.savings {
+    color: var(--secondary);
+}
+
+.expense-form,
+.savings-form {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .expense-form,
+[data-theme="dark"] .savings-form {
+    background-color: var(--light-gray);
+}
+
+.expense-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.75rem;
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .expense-item {
+    background-color: var(--light-gray);
+}
+
+.expense-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow);
+}
+
+.expense-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.expense-details {
+    flex: 1;
+}
+
+.expense-description {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.expense-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.expense-amount {
+    font-weight: 700;
+    color: var(--danger);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.expense-delete {
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.expense-delete:hover {
+    background-color: var(--danger);
+    color: white;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.goal-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .goal-card {
+    background-color: var(--light-gray);
+}
+
+.goal-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.goal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.goal-icon {
+    font-size: 1.5rem;
+    margin-right: 12px;
+}
+
+.goal-header h4 {
+    flex: 1;
+    margin: 0;
+}
+
+.goal-amount {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.goal-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.goal-percent {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.goal-date {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.goal-delete {
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.goal-delete:hover {
+    background-color: var(--danger);
+    color: white;
+}
+
+.insight-item {
+    display: flex;
+    gap: 12px;
+    padding: 1rem;
+    background-color: white;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.75rem;
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .insight-item {
+    background-color: var(--light-gray);
+}
+
+.insight-item:hover {
+    transform: translateX(5px);
+}
+
+.insight-item i {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-top: 3px;
+}
+
+.budget-tips ul {
+    list-style: none;
+    padding: 0;
+}
+
+.budget-tips li {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.budget-tips li i {
+    color: var(--secondary);
+    margin-right: 10px;
+}
+
+.export-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ===== АДАПТИВНОСТЬ ДОПОЛНИТЕЛЬНАЯ ===== */
+@media (max-width: 1024px) {
+    .add-task {
+        grid-template-columns: 1fr;
+    }
+
+    .total-balance {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .task-meta {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .habit-meta {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .week-progress {
+        flex-wrap: wrap;
+    }
+
+    .expense-meta {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .goal-details {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+}
