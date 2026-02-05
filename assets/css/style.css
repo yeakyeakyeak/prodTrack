@@ -664,6 +664,143 @@ main .container {
     gap: 16px;
 }
 
+#add-task-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 32px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: var(--shadow);
+    min-width: 140px;
+    height: 64px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.02em;
+}
+
+/* Hover эффект */
+#add-task-btn:hover {
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    color: white;
+}
+
+/* Активное состояние (клик) */
+#add-task-btn:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Фокус состояние */
+#add-task-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+/* Эффект блеска при наведении */
+#add-task-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.7s ease;
+}
+
+#add-task-btn:hover::after {
+    left: 100%;
+}
+
+/* Иконка в кнопке */
+#add-task-btn i {
+    font-size: 1.25rem;
+    transition: transform var(--transition);
+}
+
+#add-task-btn:hover i {
+    transform: scale(1.1) rotate(90deg);
+}
+
+/* Анимация при клике */
+@keyframes buttonClick {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#add-task-btn:active {
+    animation: buttonClick 0.2s ease;
+}
+
+/* Отключенное состояние */
+#add-task-btn:disabled {
+    background: var(--light-gray);
+    color: var(--gray);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#add-task-btn:disabled:hover {
+    background: var(--light-gray);
+    transform: none;
+    box-shadow: none;
+}
+
+#add-task-btn:disabled::after {
+    display: none;
+}
+
+#add-task-btn:disabled i {
+    opacity: 0.5;
+}
+
+/* Индикатор загрузки (если нужно будет добавить) */
+#add-task-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+#add-task-btn.loading::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .task-item {
     background-color: var(--white);
     border-radius: var(--radius-lg);
@@ -1952,3 +2089,4 @@ input:checked + .slider:before {
         font-size: 1.25rem;
     }
 }
+
