@@ -350,6 +350,7 @@ input:checked+.slider:before {
 }
 
 .tab-btn {
+    h
     flex: 1;
     padding: 15px 20px;
     background: none;
@@ -650,6 +651,79 @@ main {
     }
 }
 
+/* ===== БОЛЬШИЕ ЭКРАНЫ (более 1600px) ===== */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1600px;
+    }
+
+    main {
+        grid-template-columns: 1fr 350px;
+        gap: 3rem;
+    }
+
+    .add-task, .add-habit {
+        max-width: 1200px;
+        margin: 0 auto;
+        grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    }
+
+    .task-item, .habit-item, .expense-item {
+        padding: 1.25rem;
+    }
+
+    .task-text, .habit-name, .expense-description {
+        font-size: 1.1rem;
+    }
+
+    .stat {
+        min-width: 150px;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+    }
+
+    .balance-amount {
+        font-size: 2.5rem;
+    }
+
+    .calendar-container {
+        grid-template-columns: 3fr 1fr;
+    }
+
+    .budget-grid {
+        grid-template-columns: 1fr 2fr 1fr;
+        gap: 3rem;
+    }
+}
+
+/* ===== ОЧЕНЬ БОЛЬШИЕ ЭКРАНЫ (более 1920px) ===== */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1800px;
+    }
+
+    main {
+        grid-template-columns: 1fr 400px;
+    }
+
+    .add-task, .add-habit {
+        max-width: 1400px;
+    }
+
+    .stat {
+        min-width: 180px;
+    }
+
+    .stat-value {
+        font-size: 3rem;
+    }
+
+    .balance-amount {
+        font-size: 3rem;
+    }
+}
 @media (max-width: 768px) {
     .container {
         padding: 0 15px;
@@ -1273,4 +1347,5 @@ main {
         gap: 0.5rem;
         align-items: flex-start;
     }
+
 }
