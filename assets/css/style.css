@@ -437,6 +437,7 @@ main .container {
 
 /* ===== ТАБЫ ===== */
 .tabs {
+    max-width: 600px;
     display: flex;
     gap: 8px;
     background-color: var(--white);
@@ -1861,3 +1862,4 @@ input:checked + .slider:before {
         font-size: 1.25rem;
     }
 }
+
